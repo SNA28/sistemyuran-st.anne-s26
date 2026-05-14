@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Yuran St. Anne's 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -15,56 +14,69 @@
         }
         body { 
             background: radial-gradient(circle at 50% 0%, #1a3a7a, var(--deep-navy) 70%);
-            background-attachment: fixed; color: #ffffff; font-family: 'Inter', sans-serif; padding: 20px;
+            background-attachment: fixed; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px;
         }
         .glass-card {
-            background: var(--glass); backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 15px; padding: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); height: 100%;
+            background: var(--glass); backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); height: 100%;
         }
         .text-gold { color: var(--bright-gold); }
         .btn-gold {
             background: linear-gradient(135deg, var(--royal-gold), var(--bright-gold));
-            border: none; color: #000; font-weight: 800; border-radius: 10px; padding: 12px; width: 100%;
+            border: none; color: #000; font-weight: bold; border-radius: 8px;
         }
-        .scroll-area { max-height: 450px; overflow-y: auto; padding-right: 8px; }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: var(--bright-gold); border-radius: 10px; }
-        
-        /* Imej Lencana Styling */
         .school-badge {
-            width: 120px; height: auto;
-            filter: drop-shadow(0 0 15px rgba(212,175,55,0.6));
-            margin-bottom: 15px;
+            width: 130px; /* Saiz lencana lebih besar */
+            height: auto;
+            filter: drop-shadow(0 0 10px rgba(212,175,55,0.4));
+            margin-bottom: 10px;
         }
-        
-        .chart-box { max-width: 200px; margin: 0 auto; position: relative; }
-        .indicator { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+        .info-sub { font-size: 0.85rem; opacity: 0.8; margin-top: 5px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 5px; }
+        .scroll-area { max-height: 400px; overflow-y: auto; }
     </style>
 </head>
 <body>
 
 <div class="container-fluid">
-    <div class="row align-items-center mb-5 text-center text-md-start">
-        <div class="col-md-2">
-            <img src="https://i.ibb.co/YBLfPjr/st-anne-convent-logo.png" class="school-badge" alt="Lencana St. Anne">
+    <div class="row align-items-center mb-4">
+        <div class="col-md-2 text-center">
+            <img src="image.jpeg" class="school-badge" alt="Lencana Sekolah">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 text-center text-md-start">
             <h1 class="text-gold fw-bold mb-0">ST. ANNE'S CONVENT</h1>
-            <p class="lead opacity-75">Sistem Dashboard Yuran PIBG & Tambahan 2026</p>
-            <div class="d-flex justify-content-center justify-content-md-start gap-4 mt-3">
-                <div><small class="opacity-50 d-block">KUTIPAN</small><h3 class="text-gold" id="totalSemasa">RM 0</h3></div>
-                <div><small class="opacity-50 d-block">PIBG</small><h3 class="text-info" id="totalPIBG">RM 0</h3></div>
-                <div><small class="opacity-50 d-block">TAMBAHAN</small><h3 class="text-success" id="totalExtra">RM 0</h3></div>
+            <p class="lead mb-3">Sistem Pengurusan Yuran 2026</p>
+            
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="glass-card text-center py-2">
+                        <small class="opacity-50">KESELURUHAN</small>
+                        <h3 class="text-gold mb-0" id="totalSemasa">RM 0</h3>
+                        <div class="info-sub">
+                            Sasaran: <span id="sasaranTotal">RM 16,830</span><br>
+                            Bayar: <span id="bilBayarTotal">0</span> Murid
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="glass-card text-center py-2">
+                        <small class="opacity-50">TABUNG PIBG</small>
+                        <h3 class="text-info mb-0" id="totalPIBG">RM 0</h3>
+                        <div class="info-sub">Sasaran: RM 9,900</div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="glass-card text-center py-2">
+                        <small class="opacity-50">TAMBAHAN</small>
+                        <h3 class="text-success mb-0" id="totalExtra">RM 0</h3>
+                        <div class="info-sub">Sasaran: RM 6,930</div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="chart-box">
+        <div class="col-md-4 text-center">
+            <div style="max-width: 220px; margin: 0 auto;">
                 <canvas id="feeChart"></canvas>
-                <div class="text-center mt-2 small">
-                    <span><span class="indicator" style="background:var(--finish-green)"></span>Selesai</span>
-                    <span class="ms-3"><span class="indicator" style="background:var(--none-red)"></span>Belum</span>
-                </div>
             </div>
         </div>
     </div>
@@ -74,44 +86,40 @@
             <div class="glass-card">
                 <h5 class="text-gold mb-3"><i class="fas fa-plus-circle me-2"></i>Daftar Bayaran</h5>
                 <div class="mb-3">
-                    <label class="small opacity-75">Pilih Kelas</label>
+                    <label class="small">Pilih Kelas</label>
                     <select id="selKelas" class="form-select bg-dark text-white border-secondary">
                         <option value="">-- Pilih Kelas --</option>
-                        <option value="1 Daffodils">1 Daffodils</option><option value="1 Camellia">1 Camellia</option>
-                        <option value="2 Daffodils">2 Daffodils</option><option value="2 Camellia">2 Camellia</option>
-                        <option value="3 Daffodils">3 Daffodils</option><option value="3 Camellia">3 Camellia</option>
-                        <option value="4 Daffodils">4 Daffodils</option><option value="4 Camellia">4 Camellia</option>
-                        <option value="5 Daffodils">5 Daffodils</option><option value="5 Camellia">5 Camellia</option>
-                        <option value="6 Daffodils">6 Daffodils</option><option value="6 Camellia">6 Camellia</option>
+                        <option value="1 Daffodils">1 Daffodils</option>
+                        <option value="1 Camellia">1 Camellia</option>
+                        <option value="6 Camellia">6 Camellia</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="small opacity-75">Nama Murid</label>
+                    <label class="small">Nama Murid</label>
                     <select id="selNama" class="form-select bg-dark text-white border-secondary">
-                        <option value="">-- Pilih Kelas --</option>
+                        <option value="">-- Pilih Nama --</option>
                     </select>
                 </div>
                 <div class="mb-4">
-                    <label class="small opacity-75">Amaun Bayaran</label>
+                    <label class="small">Pilihan Bayaran</label>
                     <select id="selAmaun" class="form-select bg-dark text-white border-secondary">
-                        <option value="170">PIBG + TAMBAHAN (RM 170)</option>
+                        <option value="170">PENUH (RM 170)</option>
                         <option value="100">PIBG SAHAJA (RM 100)</option>
                         <option value="70">TAMBAHAN SAHAJA (RM 70)</option>
                     </select>
                 </div>
-                <button class="btn btn-gold mb-3" id="btnSimpan">SIMPAN REKOD</button>
-                <button class="btn btn-outline-light btn-sm w-100" id="btnAdminLogin"><i class="fas fa-lock me-2"></i>Admin Mode</button>
+                <button class="btn btn-gold w-100 py-2" id="btnSimpan">SIMPAN REKOD</button>
             </div>
         </div>
 
         <div class="col-lg-4">
-            <div class="glass-card" style="border-top: 4px solid var(--none-red)">
-                <div class="d-flex justify-content-between mb-3">
-                    <h5 class="text-danger fw-bold">BELUM SELESAI</h5>
+            <div class="glass-card">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="text-danger mb-0">BELUM BAYAR</h5>
                     <span class="badge bg-danger" id="countBelum">0</span>
                 </div>
                 <div class="scroll-area">
-                    <table class="table table-hover table-dark table-sm bg-transparent">
+                    <table class="table table-dark table-hover table-sm">
                         <tbody id="listBelum"></tbody>
                     </table>
                 </div>
@@ -119,13 +127,10 @@
         </div>
 
         <div class="col-lg-5">
-            <div class="glass-card" style="border-top: 4px solid var(--finish-green)">
-                <div class="d-flex justify-content-between mb-3">
-                    <h5 class="text-success fw-bold">TRANSAKSI TERKINI</h5>
-                    <button class="btn btn-sm btn-outline-warning" id="btnDownload">CSV</button>
-                </div>
+            <div class="glass-card">
+                <h5 class="text-success mb-3">REKOD TRANSAKSI</h5>
                 <div class="scroll-area">
-                    <table class="table table-hover table-dark table-sm bg-transparent">
+                    <table class="table table-dark table-hover table-sm">
                         <tbody id="listSudah"></tbody>
                     </table>
                 </div>
@@ -136,9 +141,8 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-    // Gunakan config anda
     const firebaseConfig = {
         apiKey: "AIzaSyBQeOvoELEHNAG1uFRHV5Vi9XsM561GxH4",
         authDomain: "sistem-yuran-pibg.firebaseapp.com",
@@ -153,65 +157,57 @@
     const db = getDatabase(app);
     const dbRef = ref(db, 'yuran_2026');
 
-    // Data RawData diletakkan di sini (Data murid anda)
+    // Data Murid
     const rawData = {
         "1 Daffodils": ["AAIRA SOPHEA BINTI HAZMEER", "AILEEN SURAIYA BINTI MUHAMMAD NURSYAHMI", "AYRA NADHIRAH BINTI ABDUL RAZAK", "DEANDRA ADELYA BINTI MOHD KAMARUL SHAHID", "DIVYA A/P KUMARAN", "FATHIMA SHAZNA BINTI MANSOOR KHAN", "IZA IZZARA BINTI IZAT IZZUDIN", "KAAVYASREE A/P SASIDARAN", "KHAYLA AFEEYA BINTI RAZMAN FAIZ", "LEYVINIAA JAHYAVIKNES SHAN", "NUR AAFIYAH BINTI MUHAMMAD HAKIIM", "NUR AALIYA ZAHRA BINTI MUHAMMAD MUIZZUDDIN", "NUR AIRIS SOFEA BINTI MOHAMAD YUHANIF", "NUR AISYAH ZAHIRAH BINTI MUHAMMAD AKMAL", "NUR AULIYA SAFFIYAH BINTI MUHAMMAD FITRIASHRAF", "NUR MARISSA BINTI MOHD FITRI", "NUR RAISHA ZAFIRAH BINTI PAHROLRAZI", "NUR ZAHIRA BINTI SYAROLRIZAL", "NUREEN MIKAYLA BINTI RUSDI AZIZ", "NURUL AMIRAH SOFIA BINTI ABDULLAH", "PUTERI BALQIS BINTI KAMALRULZAMAN", "PUTERI QAYRA AFIYA BINTI MOHD AMIRUL ANUAR", "QURRATUL UMNI HANIYYA BINTI MOHD RIDZUAN", "RAJA NELISSA BINTI RAJA HAZREN", "RAPHEALLA MOHAN", "RIZQ RUMAISA BINTI MOHD RIZAL", "RUMAISHA BINTI AB ZILJALALI WALIKRAM", "SAGISHNA A/P DINNAISH", "SHAMITA MOHAN GANES", "SITI NURHAFIZAH BINTI HELMI", "SITI SUHAILA SYAHIRAH BINTI MUHAMAD SAIFULIZAM", "SOFIA NUR AISHAH BINTI MOHD ZAMRIE", "SOFIA NUR ZULAIKHA BINTI MOHD ZAMRIE", "SREESHA NAIR A/P JANATHERAN NAIR", "YUSRIENA DELISHA BINTI MOHAMAD YUSOF", "ZIA AINUL MARDHIAH BINTI MOHD ZAIM"],
         "1 Camellia": ["AFIQAH BINTI HALIDZAN", "AL ZAHRA ROSE BINTI JEFRY", "AZZA ZINNIRAH BINTI MUHAMMAD ZARUL AZUANDI", "DHIA INARA BINTI MUHAMMAD ISHAM", "DHIA SOFEA AZZAHRA BINTI MOHD FAISAL", "DIAN SURFINA BINTI MOHD SAZALI", "HANAN INARA BINTI MOHD SHAHRIN", "HUZAIRAH FARZEEN BINTI MUHAMMAD HASHIM", "JAYASREE A/P SARAVANAN", "KAMAL EYDENE AMEENA BINTI KAMAL ARIFIN", "LENISHA A/P MUKKESH", "MALAIQA HUMAIRA BINTI ZULKIFLI", "MIA ZAREEN QHADIJAH BINTI KHAIRUL BAHARI", "NOR FARISHA NAURA BINTI MUHAMAD NOR FAKHRI", "NUR AATHIFAH MAWIYAH BINTI MOHD AZAHAR", "NUR HIDAYATUL HUSNA BINTI MUHAMMAD FIRDAUS", "NUR IMANI HUMAIRAH BINTI SHAHROL NIZAM", "NUR KHAIRIN AAFIYAH BINTI MUHAMMAD KAMAL", "NUR KHAWLAH ZINNIRAH BINTI HAIRUL RIZUAN", "NUR NAINA AMIRA AMSYAR BINTI UMAR AMSYAR SURESH", "NUR QASEH ELSABELLA BINTI ROSDI", "NUR QASIH MIKAYLA BINTI MOHD EFFENDY", "NUR RAISHA IRDINA BINTI MOHD.RIZUWAN", "NUR ZAFREENAH BINTI AHMAD", "NUR ZARRA SOFEA BINTI MOHD SAIDY", "NURUL AAFIYAH BINTI MUHAMMAD AZMI", "PUTRI NUR AISYAH ZAHRA BINTI MUHAMMAD ZUFPI", "QASEH DELISHA BINTI SYAHRIZAN", "SHAANELLE NAVYAA RAJ", "SITI AISYAH HUMAIRA BINTI MOHD HAIRY", "THIYALINI A/P THIAGU", "ZARYN AEESYA BINTI AMIR AIZAT"],
         "6 Camellia": ["ANUSREE A/P NAVANITHAN", "DAKSHAYANI A/P KANAPATHY", "DAMIA QADYRA BINTI ROZLAN", "DESNA A/P DASS", "EAVANAYSA A/P V.DEVANTHIRAN", "GAYATHRI DORAISINGAM", "INARAH QASRINA BINTI MOHD ANDRIAN", "MASROTUL SUFEYA BT MOHD RIDUAN", "NOR ADELIA MARDHIYAH BINTI MOHD AZAHAR", "NOR RAFIDAH BINTI ABD.RAHIM", "NUR ADRIANA SAFFIYA BINTI NUR HAEYRY", "NUR AAIN MIM BINTI SHAMIM HOSSSAIN MUKLES", "NUR AISY ARISSA BINTI KUZAIRI HEZRI", "NUR ALEESYA SOFEA BINTI NOORADZLAN", "NUR ALISYA AMANDA BT MOHD HARMIZY", "NUR AUNI MAISARAH BINTI NORMAN", "NUR DAMIA QATRUNNADA BINTI AHMAD SUYUTI", "NUR EISHAL HUMAIRA BINTI MOHD FAISAL", "NUR JANNAH HUMAIRA BINTI MOHD IZUAN", "NUR SYAFIRA BINTI UJANG", "NUR SYAKIRA ZULAIQHA BINTI BADRUL HISAM", "NURNAILAHNAJWA BINTI NAZRI", "NURUL DAMIA BT ZULKARNAIN", "OVIYA A/P SELVARAJOO", "PUTRI QISTINA BATRISYA BINTI ASWADI", "PUTRI YASMEEN MAISARA BINTI HIDHIR SUFFI", "QALISYA NUR' JANNAH BINTI RAMIZAL", "QASEH RANIA BINTI ZAFRULNIZAM", "RAYHANNA DAYANA BINTI MD RAZALI", "SITI NUR SAFINA BINTI SEIKH OMAR", "SUJEETHAJI A/P JIVA NANTHAN", "VENOLINA JASON RAJ", "YOGALAXSHME A/P DASS"]
-    }; // Tambah selebihnya jika perlu...
+    };
 
-    let isAdmin = false;
-    let myChart;
-
-    // Initialize Chart
+    // Chart Setup
     const ctx = document.getElementById('feeChart');
-    myChart = new Chart(ctx, {
-        type: 'doughnut',
+    const myChart = new Chart(ctx, {
+        type: 'pie',
         data: {
             labels: ['Selesai', 'Belum'],
             datasets: [{
                 data: [0, 100],
                 backgroundColor: ['#21c87a', '#ff4d5e'],
-                borderColor: 'transparent'
+                borderWidth: 0
             }]
         },
-        options: { cutout: '80%', plugins: { legend: { display: false } } }
+        options: { plugins: { legend: { labels: { color: '#fff' } } } }
     });
 
-    // Dropdown Logic
+    // Dropdown logic
     document.getElementById('selKelas').onchange = function() {
-        const kls = this.value;
-        const selN = document.getElementById('selNama');
-        selN.innerHTML = '<option value="">-- Pilih Nama --</option>';
-        if (rawData[kls]) {
-            rawData[kls].forEach(n => selN.innerHTML += `<option value="${n}">${n}</option>`);
-        }
+        const k = this.value;
+        const sN = document.getElementById('selNama');
+        sN.innerHTML = '<option value="">-- Pilih Nama --</option>';
+        if(rawData[k]) rawData[k].forEach(n => sN.innerHTML += `<option value="${n}">${n}</option>`);
     };
 
-    // Save Data
+    // Save
     document.getElementById('btnSimpan').onclick = function() {
         const n = document.getElementById('selNama').value;
         const k = document.getElementById('selKelas').value;
         const a = document.getElementById('selAmaun').value;
-        if(!n || !k) return alert("Pilih kelas & nama!");
-        push(dbRef, { nama: n, kelas: k, amaun: parseInt(a), tarikh: new Date().toLocaleDateString('ms-MY') });
+        if(!n) return alert("Pilih Nama!");
+        push(dbRef, { nama: n, kelas: k, amaun: parseInt(a), tarikh: new Date().toLocaleTimeString() });
     };
 
-    // Realtime Sync
+    // Sync Data
     onValue(dbRef, (snap) => {
         const data = snap.val() || {};
-        const sudahNama = new Set(Object.values(data).map(item => item.nama));
+        const sudahNama = new Set(Object.values(data).map(d => d.nama));
         
-        // Update Stats & Tables
         let total = 0, pibg = 0, extra = 0;
-        const sudahHTML = Object.entries(data).reverse().map(([id, item]) => {
+        const sudahHTML = Object.values(data).reverse().map(item => {
             total += item.amaun;
             if(item.amaun === 170) { pibg += 100; extra += 70; }
             else if(item.amaun === 100) { pibg += 100; }
             else { extra += 70; }
-            
-            return `<tr><td><b>${item.nama}</b><br><small class="opacity-50">${item.kelas}</small></td>
-                    <td class="text-end text-success fw-bold">RM${item.amaun}</td></tr>`;
+            return `<tr><td>${item.nama}<br><small class="text-muted">${item.kelas}</small></td><td class="text-end text-success">RM${item.amaun}</td></tr>`;
         }).join('');
 
         let belumCount = 0;
@@ -220,8 +216,7 @@
             rawData[kls].forEach(nama => {
                 if(!sudahNama.has(nama)) {
                     belumCount++;
-                    belumHTML += `<tr><td>${nama}<br><small class="opacity-50">${kls}</small></td>
-                                  <td class="text-end text-danger small">PENDING</td></tr>`;
+                    belumHTML += `<tr><td>${nama}<br><small class="text-muted">${kls}</small></td><td class="text-end text-danger small">PENDING</td></tr>`;
                 }
             });
         });
@@ -231,18 +226,12 @@
         document.getElementById('totalSemasa').innerText = "RM " + total;
         document.getElementById('totalPIBG').innerText = "RM " + pibg;
         document.getElementById('totalExtra').innerText = "RM " + extra;
+        document.getElementById('bilBayarTotal').innerText = sudahNama.size;
         document.getElementById('countBelum').innerText = belumCount;
 
         myChart.data.datasets[0].data = [sudahNama.size, belumCount];
         myChart.update();
     });
-
-    // Admin Mode (Sama seperti asal)
-    document.getElementById('btnAdminLogin').onclick = function() {
-        const p = prompt("Kata Laluan Admin:");
-        if(p === "admin123") alert("Mod Admin Aktif! (Fungsi padam boleh ditambah)");
-    };
 </script>
-
 </body>
 </html>
