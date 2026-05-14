@@ -8,123 +8,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        :root { 
-            --deep-navy: #050c1d; 
-            --glow-blue: #007bff;
-            --royal-gold: #ffcc00;
-            --soft-white: #ffffff;
-            --border-color: #dee2e6;
-        }
-        body { 
-            background: #f4f7f6; 
-            color: var(--deep-navy); 
-            font-family: 'Inter', 'Segoe UI', sans-serif; 
-            padding: 20px;
-        }
+        :root { --deep-navy: #050c1d; --glow-blue: #007bff; --royal-gold: #ffcc00; }
+        body { background: #f4f7f6; color: var(--deep-navy); font-family: 'Inter', sans-serif; padding: 20px; }
 
-        /* HEADER GLOW-UP */
+        /* HEADER GLOWUP */
         .header-section {
             background: linear-gradient(135deg, #050c1d 0%, #0a192f 100%);
-            border-radius: 20px;
-            padding: 35px;
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
-            /* Shadow glow effect */
-            box-shadow: 0 15px 35px rgba(5, 12, 29, 0.3), 0 0 15px rgba(0, 123, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px; padding: 35px; margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(5, 12, 29, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.08); color: white;
         }
-
-        /* Kesan cahaya latar belakang header */
-        .header-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -10%;
-            width: 40%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 123, 255, 0.1) 0%, transparent 70%);
-            transform: rotate(30deg);
-            pointer-events: none;
-        }
-
-        .header-container {
-            display: flex; align-items: center; justify-content: center;
-            gap: 30px; border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 25px; margin-bottom: 30px;
-            position: relative; z-index: 1;
-        }
-
-        .school-badge { 
-            width: 90px; 
-            height: auto; 
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
-            transition: transform 0.3s ease;
-        }
-        .school-badge:hover { transform: scale(1.05); }
-
-        .header-text h1 { 
-            font-size: 2.5rem; 
-            margin: 0; 
-            color: #ffffff; 
-            font-weight: 900; 
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        /* STAT CARDS GLOW */
-        .stat-card-dark {
-            background: rgba(255, 255, 255, 0.07); 
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px; 
-            padding: 18px; 
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        .stat-card-dark:hover {
-            background: rgba(255, 255, 255, 0.12);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-        .stat-value-light { 
-            font-size: 1.5rem; 
-            font-weight: 800; 
-            color: var(--royal-gold);
-            text-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
-        }
-
-        /* BAHAGIAN BAWAH KEKAL PUTIH */
-        .content-card {
-            background: var(--soft-white);
-            border-radius: 18px;
-            padding: 25px;
-            height: 100%;
-            border: 1px solid var(--border-color);
-            color: var(--deep-navy);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
+        .header-container { display: flex; align-items: center; gap: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 25px; margin-bottom: 30px; }
+        .school-badge { width: 80px; filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2)); }
         
-        .btn-navy {
-            background: var(--deep-navy); 
-            color: white; 
-            font-weight: 700; 
-            border-radius: 10px; 
-            padding: 14px;
-            border: none;
-            box-shadow: 0 4px 15px rgba(5, 12, 29, 0.2);
-            transition: all 0.3s;
+        .stat-card-dark {
+            background: rgba(255, 255, 255, 0.07); backdrop-filter: blur(10px);
+            border-radius: 15px; padding: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.1);
         }
-        .btn-navy:hover {
-            background: #112240;
-            transform: scale(1.02);
-            box-shadow: 0 6px 20px rgba(5, 12, 29, 0.3);
-            color: var(--royal-gold);
-        }
+        .stat-value-light { font-size: 1.4rem; font-weight: 800; color: var(--royal-gold); }
 
-        .scroll-area { max-height: 500px; overflow-y: auto; padding-right: 8px; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 10px; }
+        /* CONTENT */
+        .content-card { background: white; border-radius: 18px; padding: 25px; border: 1px solid #dee2e6; box-shadow: 0 10px 25px rgba(0,0,0,0.05); height: 100%; }
+        .btn-navy { background: var(--deep-navy); color: white; font-weight: 700; border-radius: 10px; padding: 12px; border: none; width: 100%; }
+        .btn-navy:hover { background: #112240; color: var(--royal-gold); }
+        
+        .scroll-area { max-height: 500px; overflow-y: auto; }
+        .btn-delete { color: #e74c3c; cursor: pointer; transition: 0.2s; padding: 5px 10px; }
+        .btn-delete:hover { color: #c0392b; transform: scale(1.2); }
     </style>
 </head>
 <body>
@@ -132,49 +42,37 @@
 <div class="container-fluid">
     <div class="header-section">
         <div class="header-container">
-            <img src="image.jpeg" class="school-badge" alt="Lencana">
-            <div class="header-text text-center text-md-start">
-                <h1>ST. ANNE'S CONVENT</h1>
-                <p class="mb-0 fw-bold text-uppercase" style="color: #aab8c2; letter-spacing: 1.5px; font-size: 0.9rem;">
-                    <i class="fas fa-shield-halved me-2"></i>Sistem Pengurusan Yuran 2026
-                </p>
+            <img src="image.jpeg" class="school-badge">
+            <div>
+                <h1 class="fw-black mb-0" style="letter-spacing: 2px;">ST. ANNE'S CONVENT</h1>
+                <p class="opacity-75 mb-0">SISTEM PENGURUSAN YURAN 2026</p>
             </div>
         </div>
-
         <div class="row g-3">
             <div class="col-md-3">
                 <div class="stat-card-dark">
-                    <div class="small opacity-75 fw-bold text-white mb-1">TOTAL KUTIPAN</div>
+                    <div class="small opacity-75">JUMLAH KUTIPAN</div>
                     <div class="stat-value-light" id="totalSemasa">RM 0</div>
-                    <div class="progress mt-2" style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px;">
-                        <div id="barTotal" class="progress-bar bg-info" style="width: 0%; box-shadow: 0 0 10px var(--glow-blue);"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="stat-card-dark">
-                    <div class="small opacity-75 fw-bold text-white mb-1">PIBG</div>
-                    <div class="stat-value-light" id="totalPIBG">RM 0</div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="stat-card-dark">
-                    <div class="small opacity-75 fw-bold text-white mb-1">KELAS TAMBAHAN</div>
-                    <div class="stat-value-light" id="totalExtra">RM 0</div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="stat-card-dark">
-                    <div class="small opacity-75 fw-bold text-white mb-1">BIL. BAYAR</div>
-                    <div class="stat-value-light" style="color: #fff;"><span id="bilBayarTotal">0</span><small style="font-size: 0.8rem; color: #aab8c2;"> / 406</small></div>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="stat-card-dark d-flex align-items-center justify-content-center py-2">
-                    <div style="max-width: 65px;"><canvas id="feeChart"></canvas></div>
+                <div class="stat-card-dark">
+                    <div class="small opacity-75">PIBG / KELAS TAMBAHAN</div>
+                    <div class="stat-value-light"><span id="totalPIBG">0</span> / <span id="totalExtra">0</span></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card-dark">
+                    <div class="small opacity-75">BIL. PEMBAYAR</div>
+                    <div class="stat-value-light"><span id="bilBayarTotal">0</span>/406</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card-dark d-flex align-items-center justify-content-center">
+                    <div style="max-width: 50px;"><canvas id="feeChart"></canvas></div>
                     <div class="ms-3 text-start small">
-                        <div style="color: #2ecc71; font-weight: bold;"><i class="fas fa-circle me-1"></i> Selesai</div>
-                        <div style="color: #e74c3c; font-weight: bold;"><i class="fas fa-circle me-1"></i> Belum</div>
+                        <div class="text-success">● Bayar</div>
+                        <div class="text-danger">● Belum</div>
                     </div>
                 </div>
             </div>
@@ -184,61 +82,33 @@
     <div class="row g-4">
         <div class="col-lg-3">
             <div class="content-card">
-                <h6 class="fw-bold mb-4 d-flex align-items-center">
-                    <span class="bg-primary text-white rounded-circle p-2 me-2" style="width:30px; height:30px; display:flex; align-items:center; justify-content:center; font-size: 12px;">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                    KEMASUKAN DATA
-                </h6>
-                <div class="mb-3">
-                    <label class="form-label">Pilih Kelas</label>
-                    <select id="selKelas" class="form-select form-select-lg" style="font-size: 1rem;"></select>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Nama Murid</label>
-                    <select id="selNama" class="form-select form-select-lg" style="font-size: 1rem;"><option value="">-- Pilih Kelas --</option></select>
-                </div>
-                <div class="mb-4">
-                    <label class="form-label">Kategori</label>
+                <h6 class="fw-bold mb-3 text-primary">KEMASUKAN DATA</h6>
+                <div class="mb-3"><label class="form-label">Kelas</label><select id="selKelas" class="form-select"></select></div>
+                <div class="mb-3"><label class="form-label">Nama</label><select id="selNama" class="form-select"></select></div>
+                <div class="mb-4"><label class="form-label">Amaun</label>
                     <select id="selAmaun" class="form-select">
-                        <option value="170">BAYARAN PENUH (RM 170)</option>
-                        <option value="100">PIBG SAHAJA (RM 100)</option>
-                        <option value="70">KELAS TAMBAHAN SAHAJA (RM 70)</option>
+                        <option value="170">PENUH (RM 170)</option>
+                        <option value="100">PIBG (RM 100)</option>
+                        <option value="70">KELAS TAMBAHAN (RM 70)</option>
                     </select>
                 </div>
-                <button class="btn btn-navy w-100 mb-3" id="btnSimpan">
-                    <i class="fas fa-save me-2"></i>SAHKAN BAYARAN
-                </button>
-                <button class="btn btn-link text-muted w-100 btn-sm text-decoration-none" id="btnExport">
-                    <i class="fas fa-download me-1"></i> Muat Turun Laporan (.csv)
-                </button>
+                <button class="btn btn-navy" id="btnSimpan">SIMPAN REKOD</button>
             </div>
         </div>
 
         <div class="col-lg-4">
             <div class="content-card">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h6 class="fw-bold text-danger mb-0">SENARAI TUNGGAKAN</h6>
-                    <span class="badge rounded-pill bg-danger shadow-sm" id="countBelum" style="padding: 8px 12px;">0</span>
-                </div>
-                <div class="scroll-area">
-                    <table class="table table-hover align-middle">
-                        <tbody id="listBelum"></tbody>
-                    </table>
-                </div>
+                <h6 class="fw-bold text-danger mb-3">TUNGGAKAN (<span id="countBelum">0</span>)</h6>
+                <div class="scroll-area"><table class="table align-middle"><tbody id="listBelum"></tbody></table></div>
             </div>
         </div>
 
         <div class="col-lg-5">
             <div class="content-card">
-                <h6 class="fw-bold text-success mb-4 d-flex align-items-center">
-                    <i class="fas fa-history me-2"></i>TRANSAKSI TERBARU
-                </h6>
+                <h6 class="fw-bold text-success mb-3">REKOD TRANSAKSI (KLIK 🗑️ UNTUK PADAM)</h6>
                 <div class="scroll-area">
-                    <table class="table table-hover align-middle">
-                        <thead class="table-light">
-                            <tr><th>Butiran Murid</th><th class="text-end">Jumlah</th></tr>
-                        </thead>
+                    <table class="table align-middle">
+                        <thead><tr><th>Murid</th><th class="text-end">Amaun</th><th class="text-center">Aksi</th></tr></thead>
                         <tbody id="listSudah"></tbody>
                     </table>
                 </div>
@@ -249,7 +119,7 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyBQeOvoELEHNAG1uFRHV5Vi9XsM561GxH4",
@@ -265,7 +135,7 @@
     const db = getDatabase(app);
     const dbRef = ref(db, 'yuran_2026');
 
-    // Data (Disingkatkan untuk ruang kod, masukkan data penuh anda di sini)
+    // Masukkan rawData anda di sini (Saya pendekkan untuk contoh)
     const rawData = {
         "1 Daffodils": ["AAIRA SOPHEA BINTI HAZMEER", "AILEEN SURAIYA BINTI MUHAMMAD NURSYAHMI", "AYRA NADHIRAH BINTI ABDUL RAZAK", "DEANDRA ADELYA BINTI MOHD KAMARUL SHAHID", "DIVYA A/P KUMARAN", "FATHIMA SHAZNA BINTI MANSOOR KHAN", "IZA IZZARA BINTI IZAT IZZUDIN", "KAAVYASREE A/P SASIDARAN", "KHAYLA AFEEYA BINTI RAZMAN FAIZ", "LEYVINIAA JAHYAVIKNES SHAN", "NUR AAFIYAH BINTI MUHAMMAD HAKIIM", "NUR AALIYA ZAHRA BINTI MUHAMMAD MUIZZUDDIN", "NUR AIRIS SOFEA BINTI MOHAMAD YUHANIF", "NUR AISYAH ZAHIRAH BINTI MUHAMMAD AKMAL", "NUR AULIYA SAFFIYAH BINTI MUHAMMAD FITRIASHRAF", "NUR MARISSA BINTI MOHD FITRI", "NUR RAISHA ZAFIRAH BINTI PAHROLRAZI", "NUR ZAHIRA BINTI SYAROLRIZAL", "NUREEN MIKAYLA BINTI RUSDI AZIZ", "NURUL AMIRAH SOFIA BINTI ABDULLAH", "PUTERI BALQIS BINTI KAMALRULZAMAN", "PUTERI QAYRA AFIYA BINTI MOHD AMIRUL ANUAR", "QURRATUL UMNI HANIYYA BINTI MOHD RIDZUAN", "RAJA NELISSA BINTI RAJA HAZREN", "RAPHEALLA MOHAN", "RIZQ RUMAISA BINTI MOHD Rizal", "RUMAISHA BINTI AB ZILJALALI WALIKRAM", "SAGISHNA A/P DINNAISH", "SHAMITA MOHAN GANES", "SITI NURHAFIZAH BINTI HELMI", "SITI SUHAILA SYAHIRAH BINTI MUHAMAD SAIFULIZAM", "SOFIA NUR AISHAH BINTI MOHD ZAMRIE", "SOFIA NUR ZULAIKHA BINTI MOHD ZAMRIE", "SREESHA NAIR A/P JANATHERAN NAIR", "YUSRIENA DELISHA BINTI MOHAMAD YUSOF", "ZIA AINUL MARDHIAH BINTI MOHD ZAIM"],
         "1 Camellia": ["AFIQAH BINTI HALIDZAN", "AL ZAHRA ROSE BINTI JEFRY", "AZZA ZINNIRAH BINTI MUHAMMAD ZARUL AZUANDI", "DHIA INARA BINTI MUHAMMAD ISHAM", "DHIA SOFEA AZZAHRA BINTI MOHD FAISAL", "DIAN SURFINA BINTI MOHD SAZALI", "HANAN INARA BINTI MOHD SHAHRIN", "HUZAIRAH FARZEEN BINTI MUHAMMAD HASHIM", "JAYASREE A/P SARAVANAN", "KAMAL EYDENE AMEENA BINTI KAMAL ARIFIN", "LENISHA A/P MUKKESH", "MALAIQA HUMAIRA BINTI ZULKIFLI", "MIA ZAREEN QHADIJAH BINTI KHAIRUL BAHARI", "NOR FARISHA NAURA BINTI MUHAMAD NOR FAKHRI", "NUR AATHIFAH MAWIYAH BINTI MOHD AZAHAR", "NUR HIDAYATUL HUSNA BINTI MUHAMMAD FIRDAUS", "NUR IMANI HUMAIRAH BINTI SHAHROL NIZAM", "NUR KHAIRIN AAFIYAH BINTI MUHAMMAD KAMAL", "NUR KHAWLAH ZINNIRAH BINTI HAIRUL RIZUAN", "NUR NAINA AMIRA AMSYAR BINTI UMAR AMSYAR SURESH", "NUR QASEH ELSABELLA BINTI ROSDI", "NUR QASIH MIKAYLA BINTI MOHD EFFENDY", "NUR RAISHA IRDINA BINTI MOHD.RIZUWAN", "NUR ZAFREENAH BINTI AHMAD", "NUR ZARRA SOFEA BINTI MOHD SAIDY", "NURUL AAFIYAH BINTI MUHAMMAD AZMI", "PUTRI NUR AISYAH ZAHRA BINTI MUHAMMAD ZUFPI", "QASEH DELISHA BINTI SYAHRIZAN", "SHAANELLE NAVYAA RAJ", "SITI AISYAH HUMAIRA BINTI MOHD HAIRY", "THIYALINI A/P THIAGU", "ZARYN AEESYA BINTI AMIR AIZAT"],
@@ -284,42 +154,46 @@
     const ctx = document.getElementById('feeChart');
     const myChart = new Chart(ctx, {
         type: 'doughnut',
-        data: {
-            labels: ['Selesai', 'Belum'],
-            datasets: [{ data: [0, 406], backgroundColor: ['#2ecc71', '#e74c3c'], borderWidth: 0 }]
-        },
-        options: { plugins: { legend: { display: false } }, cutout: '78%' }
+        data: { labels: ['Selesai', 'Belum'], datasets: [{ data: [0, 406], backgroundColor: ['#2ecc71', '#e74c3c'], borderWidth: 0 }] },
+        options: { plugins: { legend: { display: false } }, cutout: '70%' }
     });
 
     const selKelas = document.getElementById('selKelas');
     const selNama = document.getElementById('selNama');
-    selKelas.innerHTML = '<option value="">-- PILIH KELAS --</option>';
+    selKelas.innerHTML = '<option value="">-- KELAS --</option>';
     Object.keys(rawData).forEach(k => selKelas.innerHTML += `<option value="${k}">${k}</option>`);
 
     selKelas.onchange = function() {
-        const k = this.value;
-        selNama.innerHTML = '<option value="">-- PILIH MURID --</option>';
-        if(rawData[k]) rawData[k].forEach(n => selNama.innerHTML += `<option value="${n}">${n}</option>`);
+        selNama.innerHTML = '<option value="">-- NAMA --</option>';
+        if(rawData[this.value]) rawData[this.value].forEach(n => selNama.innerHTML += `<option value="${n}">${n}</option>`);
     };
 
+    // SIMPAN DATA
     document.getElementById('btnSimpan').onclick = function() {
         const n = selNama.value, k = selKelas.value, a = document.getElementById('selAmaun').value;
-        if(!n) return alert("Sila pilih murid!");
-        push(dbRef, { nama: n, kelas: k, amaun: parseInt(a), ts: new Date().getTime() });
+        if(!n) return alert("Pilih Nama!");
+        push(dbRef, { nama: n, kelas: k, amaun: parseInt(a) });
+    };
+
+    // FUNGSI PADAM NAMA SALAH
+    window.padamRekod = function(key) {
+        if(confirm("Padam rekod murid ini sahaja?")) {
+            remove(ref(db, `yuran_2026/${key}`));
+        }
     };
 
     onValue(dbRef, (snap) => {
         const data = snap.val() || {};
-        const currentTransactions = Object.values(data);
-        const sudahNama = new Set(currentTransactions.map(d => d.nama));
+        const items = Object.entries(data); // Simpan sekali dengan Key Firebase
+        const sudahNama = new Set(items.map(i => i[1].nama));
         
         let total = 0, pibg = 0, extra = 0;
-        const sudahHTML = [...currentTransactions].reverse().map(item => {
-            total += item.amaun;
-            if(item.amaun === 170) { pibg += 100; extra += 70; }
-            else if(item.amaun === 100) { pibg += 100; }
+        const sudahHTML = items.reverse().map(([key, val]) => {
+            total += val.amaun;
+            if(val.amaun === 170) { pibg += 100; extra += 70; }
+            else if(val.amaun === 100) { pibg += 100; }
             else { extra += 70; }
-            return `<tr><td><span class="fw-bold d-block">${item.nama}</span><small class="text-muted">${item.kelas}</small></td><td class="text-end text-success fw-bold">RM${item.amaun}</td></tr>`;
+            return `<tr><td><b>${val.nama}</b><br><small>${val.kelas}</small></td><td class="text-end">RM${val.amaun}</td><td class="text-center"><i class="fas fa-trash-alt btn-delete" onclick="padamRekod('${key}')"></i></td></tr>`;
         }).join('');
 
         let belumCount = 0, belumHTML = "";
@@ -327,20 +201,18 @@
             rawData[kls].forEach(nama => {
                 if(!sudahNama.has(nama)) {
                     belumCount++;
-                    belumHTML += `<tr><td><span class="d-block">${nama}</span><small class="text-muted">${kls}</small></td><td class="text-end text-danger small fw-bold">PENDING</td></tr>`;
+                    belumHTML += `<tr><td>${nama}<br><small>${kls}</small></td><td class="text-end text-danger small">●</td></tr>`;
                 }
             });
         });
 
         document.getElementById('listSudah').innerHTML = sudahHTML;
         document.getElementById('listBelum').innerHTML = belumHTML;
-        document.getElementById('totalSemasa').innerText = "RM " + total.toLocaleString();
-        document.getElementById('totalPIBG').innerText = "RM " + pibg.toLocaleString();
-        document.getElementById('totalExtra').innerText = "RM " + extra.toLocaleString();
+        document.getElementById('totalSemasa').innerText = "RM " + total;
+        document.getElementById('totalPIBG').innerText = "RM " + pibg;
+        document.getElementById('totalExtra').innerText = "RM " + extra;
         document.getElementById('bilBayarTotal').innerText = sudahNama.size;
         document.getElementById('countBelum').innerText = belumCount;
-        
-        document.getElementById('barTotal').style.width = ((total / 69020) * 100) + "%";
         myChart.data.datasets[0].data = [sudahNama.size, belumCount];
         myChart.update();
     });
