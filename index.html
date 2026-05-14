@@ -13,26 +13,28 @@
 
         .header-section {
             background: linear-gradient(135deg, #050c1d 0%, #0a192f 100%);
-            border-radius: 20px; padding: 35px; margin-bottom: 30px;
+            border-radius: 20px; padding: 30px; margin-bottom: 30px;
             box-shadow: 0 15px 35px rgba(5, 12, 29, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.08); color: white;
         }
-        .header-container { display: flex; align-items: center; gap: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 25px; margin-bottom: 30px; }
-        .school-badge { width: 80px; filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2)); }
+        .header-container { display: flex; align-items: center; gap: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 20px; }
+        .school-badge { width: 70px; filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2)); }
         
         .stat-card-dark {
             background: rgba(255, 255, 255, 0.07); backdrop-filter: blur(10px);
-            border-radius: 15px; padding: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px; padding: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.1);
+            height: 100%;
         }
-        .stat-value-light { font-size: 1.4rem; font-weight: 800; color: var(--royal-gold); }
+        .stat-value-light { font-size: 1.25rem; font-weight: 800; color: var(--royal-gold); }
+        .stat-label { font-size: 0.7rem; letter-spacing: 1px; color: rgba(255,255,255,0.75); }
 
         .content-card { background: white; border-radius: 18px; padding: 25px; border: 1px solid #dee2e6; box-shadow: 0 10px 25px rgba(0,0,0,0.05); height: 100%; transition: 0.3s; }
         .btn-navy { background: var(--deep-navy); color: white; font-weight: 700; border-radius: 10px; padding: 12px; border: none; width: 100%; }
         .btn-navy:hover { background: #112240; color: var(--royal-gold); }
         
-        .scroll-area { max-height: 500px; overflow-y: auto; }
+        .scroll-area { max-height: 480px; overflow-y: auto; }
         
-        /* ADMIN DELETE STYLE */
+        /* ADMIN MODE */
         .col-delete { display: none; text-align: center; width: 40px; }
         .btn-delete { color: #e74c3c; cursor: pointer; padding: 5px; }
         .admin-mode .col-delete { display: table-cell; }
@@ -46,36 +48,39 @@
         <div class="header-container">
             <img src="image.jpeg" class="school-badge">
             <div>
-                <h1 class="fw-black mb-0" style="letter-spacing: 2px;">ST. ANNE'S CONVENT</h1>
-                <p class="opacity-75 mb-0">SISTEM PENGURUSAN YURAN 2026</p>
+                <h2 class="fw-black mb-0">ST. ANNE'S CONVENT</h2>
+                <p class="opacity-75 mb-0 small">PENGURUSAN YURAN PIBG & TAMBAHAN 2026</p>
             </div>
         </div>
-        <div class="row g-3">
-            <div class="col-md-3">
+        
+        <div class="row g-2">
+            <div class="col-md">
                 <div class="stat-card-dark">
-                    <div class="small opacity-75 text-uppercase">Total Kutipan</div>
+                    <div class="stat-label text-uppercase">Total Kutipan</div>
                     <div class="stat-value-light" id="totalSemasa">RM 0</div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md">
                 <div class="stat-card-dark">
-                    <div class="small opacity-75 text-uppercase">PIBG / Tambahan</div>
-                    <div class="stat-value-light"><span id="totalPIBG">0</span> / <span id="totalExtra">0</span></div>
+                    <div class="stat-label text-uppercase">Yuran PIBG (RM100)</div>
+                    <div class="stat-value-light text-white" id="totalPIBG">RM 0</div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md">
                 <div class="stat-card-dark">
-                    <div class="small opacity-75 text-uppercase">Bil. Pembayar</div>
-                    <div class="stat-value-light"><span id="bilBayarTotal">0</span>/406</div>
+                    <div class="stat-label text-uppercase">Yuran Tambahan (RM70)</div>
+                    <div class="stat-value-light text-white" id="totalExtra">RM 0</div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md">
+                <div class="stat-card-dark">
+                    <div class="stat-label text-uppercase">Bil. Pembayar</div>
+                    <div class="stat-value-light" id="bilBayarTotal">0/406</div>
+                </div>
+            </div>
+            <div class="col-md-2">
                 <div class="stat-card-dark d-flex align-items-center justify-content-center">
-                    <div style="max-width: 50px;"><canvas id="feeChart"></canvas></div>
-                    <div class="ms-3 text-start small">
-                        <div class="text-success fw-bold">● Bayar</div>
-                        <div class="text-danger fw-bold">● Belum</div>
-                    </div>
+                    <div style="max-width: 45px;"><canvas id="feeChart"></canvas></div>
                 </div>
             </div>
         </div>
@@ -87,17 +92,17 @@
                 <h6 class="fw-bold mb-3 text-primary">KEMASUKAN DATA</h6>
                 <div class="mb-3"><label class="form-label">Kelas</label><select id="selKelas" class="form-select"></select></div>
                 <div class="mb-3"><label class="form-label">Nama</label><select id="selNama" class="form-select"></select></div>
-                <div class="mb-4"><label class="form-label">Amaun</label>
+                <div class="mb-4"><label class="form-label">Jenis Bayaran</label>
                     <select id="selAmaun" class="form-select">
                         <option value="170">PENUH (RM 170)</option>
-                        <option value="100">PIBG (RM 100)</option>
-                        <option value="70">TAMBAHAN (RM 70)</option>
+                        <option value="100">PIBG SAHAJA (RM 100)</option>
+                        <option value="70">TAMBAHAN SAHAJA (RM 70)</option>
                     </select>
                 </div>
                 <button class="btn btn-navy" id="btnSimpan">SIMPAN REKOD</button>
                 
                 <div class="mt-5 pt-3 border-top text-center">
-                    <button class="btn btn-link btn-sm text-decoration-none" id="btnAdminAccess" style="color: #cbd5e0; font-size: 16px;">
+                    <button class="btn btn-link btn-sm text-decoration-none" id="btnAdminAccess" style="color: #cbd5e0;">
                         <i class="fas fa-lock" id="iconKunci"></i>
                     </button>
                 </div>
@@ -106,8 +111,8 @@
 
         <div class="col-lg-4">
             <div class="content-card">
-                <h6 class="fw-bold text-danger mb-3">TUNGGAKAN (<span id="countBelum">0</span>)</h6>
-                <div class="scroll-area"><table class="table align-middle"><tbody id="listBelum"></tbody></table></div>
+                <h6 class="fw-bold text-danger mb-3">SENARAI TUNGGAKAN (<span id="countBelum">0</span>)</h6>
+                <div class="scroll-area"><table class="table table-hover align-middle"><tbody id="listBelum"></tbody></table></div>
             </div>
         </div>
 
@@ -115,7 +120,7 @@
             <div class="content-card" id="cardSudah">
                 <h6 class="fw-bold text-success mb-3">REKOD TRANSAKSI</h6>
                 <div class="scroll-area">
-                    <table class="table align-middle">
+                    <table class="table table-hover align-middle">
                         <thead><tr><th>Murid</th><th class="text-end">Amaun</th><th class="col-delete"></th></tr></thead>
                         <tbody id="listSudah"></tbody>
                     </table>
@@ -154,7 +159,7 @@
         "4 Camellia": ["ADELIA QAISARAH BINTI AZDLI", "AINUR ZARA AQEELA BINTI MOHD FAIZAL", "IZZ AIEYRA UQASHA BINTI MOHD IZHAM", "KAUSALYA A/P BALU", "NIK IZZSARA XIANDRA BINTI INDRA KASUMA", "NUR ADRA JAUZA BINTI MUHAMAD AZAHAR", "NUR AINA ZHAFARINA BINTI SARIZAN", "NUR ALYA HANA BINTI RIZAN", "NUR AQEELA NASHWA BINTI RIZUAN", "NUR AQILAH FALISHA BINTI SHAHNIZAM", "NUR ARDINI ZAHIRAH BINTI MAZNAN", "NUR ARYANNA BINTI ABDUL LATIF", "NUR FIRYAL NUZAEYRA BINTI NASROL AZRIN", "NUR HAZIRAH NADIA BINTI RAZIFZUL", "NUR ILFA MEDINA BINTI MUHAMMAD SUHAIMI", "NUR IZZARA NATASYAH BINTI MATNOH", "NUR RANIA AZZAHRA BINTI FIRDAUS", "NUR RANIA HUMAYRAA BINTI MOHD.RIZUWAN", "NUR SAFRINA BINTI KAHAR", "NURIN ARISSA BINTI MOHD HAFIDY", "PAYRESHA SAKTI MANI A/P NURESH MANI", "PHUWANEYSHWARY A/P KRISHNAN", "QAISARA HUMAIRA BINTI MOHAMAD AZRIN", "SHAMIRAH NATASHAH BINTI KHAIRUL NIZAM RAJU", "SITI HAWA ZULEYKHA BINTI MUHAMMAD FIRDAUS", "SITI NUR MAISARAH BINTI MOHD HAIDI", "VYSHNAVI A/P KULASINGGAM", "WAN NURKHAYSHA LUTHFIA BINTI WAN MUHAMAD FARIS AIMAN", "ZIA ARISHA IRDEENA BINTI MOHD ZAIM"],
         "5 Daffodils": ["AFRAH NASUHA BINTI MUHAMMAD AZAM", "AISYAH QYRA BINTI MUHAMMAD ZAKI", "ANEESA SHAKIRA BINTI SUHAIZAM", "AYRAA SOFEA BINTI SAIFUL AKMAR", "HINDRAKSHI A/P SARAVANA KUMAR", "HUMAIRA KHADIJAH BINTI NAZARUDDIN", "MAI ADWA INSYIRAH BINTI MEOR SYAHRIN EDZUAN", "NEEHARIKHA A/P SRI RAMULU", "NOORUL HUMAIRA BINTI SYED IBRAHIM", "NUR AISYAH MEDINA BINTI MOHD AZMIZAN", "NUR ALESYA NUHAA BINTI MOHD FAIRUS", "NUR ARISSA SOFIA BINTI MD FADHIR", "NUR AZMEERA ALEESHAH BINTI AZMAN SHAH", "NUR EISYA ERINA BINTI MOHD SAHARUDDIN", "NUR FAIQAH HUMAIRA BINTI MOHD SYAIFUL AMIN", "NUR IRDINA SOLEHAH BINTI MOHD AIZULHAR", "NUR NADIA ERYNA BINTI MUHAMMAD AZUAN", "NUR QASRINA RASYIQAH BINTI MOHAMAD AZHAR", "NUR SYARAFANA ERYNA BINTI MUHAMAD FHATHI", "NURIN AFINA BINTI AZWAN", "NURUL ZAHIRAH BINTI MOHD SHAH RITHAUDIN", "PUTERI LUTHFIAH SYAUQINA BINTI MOHD SYAFIQ", "QAISARA ISABELLA BINTI MOHD FAROZ", "QASEH NURINSYIRAH BINTI MOHAMMAD ZAMRI", "QAYRA ZHAFEERA BINTI MOHD HAFIZ", "RANIA RAISHA BINTI MOHD AZMI", "RONA KESUMA BINTI MOHD NURRUL FAIZ", "SHERINA SMERA SAIMAN", "SINDUJA A/P VIKNESWARAN", "SYAZLIN NUR KHUZAIRA BINTI AHMAD KHUZAIME", "TANUSHA A/P PARAMESWARAN", "WISYAH AFIFA FITIYA BINTI MOHAMAD ZAKI", "YASHMIETRRA A/P KUMARASEELAN", "YUSRINA RIN NOHARA BT MOHD RIDZUAN"],
         "5 Camellia": ["ADELLIA NUR JASMINE BINTI SUHAIMI", "ANGELINA A/P NYANASELVAM", "ARLISSA NUR RAMADHANIA BINTI ARIS SHAFUDEEN", "DHANUSRI A/P MOHANESWARAN", "DHIA QAISARA BINTI MAZLAN", "DINI NUHA ZAHRA BINTI ZAHRUL", "ELLYDHIA BINTI AZMAN", "HARSHINEE A/P SANJIS", "KEVINA THEVAMANE A/P PRASATH", "MEDINA IZZ WANI BINTI MOHD FAIDSAL", "NAALINAH A/P JEYASEELAN", "NAURAH NURJANNAH BINTI ROSDI", "NOR IRDINA SYAKIRAH BINTI MOHD SAMSUL", "NUR ALYSSA ZAHIRA LIM BINTI NAZRUL AZWAT LIM", "NUR AMANI DAMIA BINTI MOHD HILMAN", "NUR AUNI BATRISYIA BINTI MOHD HAZARUL FAIROL", "NUR DHIA QARISSA BINTI NORHISAM", "NUR HANA HUMAIRA BINTI MOHD NAZRI", "NUR HANIFAH IMANI BINTI MUHAMAD HAFIZY", "NUR JASMIN RANIA BINTI MOHD YAACOB", "NUR QURRATU'AIN QHALIESYAH BINTI KHAIRUL ADLI", "NUR RAMADHANIAH BINTI ISHAK SAH", "NUR SAFFIYA QAISARA BINTI ABDUL LATIF", "NUR SYAZIA AZZAHRAH BINTI MOHD AZMAN", "NURUL AQILAH BINTI MOHD NAHRHOWI", "PUTERI NOR DHIYA QAISARA BINTI MAZLAN", "PUTERI NUR SUMAYYAH BINTI MOHAMAD NAZRUL", "PUTRI ARIQA INSYIRA BINTI MOHD ISYULAHI", "PUTRI NUR ARIANA ZAFINA BINTI MUHAMMAD ZUFPI", "SHAALINI A/P SELVAKUMAR", "SITI NUR JANNAH BINTI MOHD HAIDI", "SUDHISHKA A/P RENGANATHAN", "TUAN NURQAIREEN AISYAH BINTI KHAIROL IZHAR", "TUSHAARA A/P YOGESWARAN", "UMI NUR SYAFIYAH BINTI MOHAMMAD AFFANDI"],
-        "6 Daffodils": ["AISHA FATIMA BINTI MOHD FAIZAL", "ALIYA ADRIANA BINTI MOHD ARIF", "ALYA NADHIRAH BINTI ABDUL RAZAK", "AYRA SAFIYYAH BINTI MOHD BAKHTIAR", "HAFIZAH BINTI AZMI", "HAIFAA FAIQAH BINTI MUHAMMAD HASHIM", "HANNAH SAFIYYAH BINTI RAZMAN FAIZ", "HASYA MAISARAH BINTI MOHD NAJIB", "HAYAA YUMNA BINTI MUHAMAD HAMDI", "KAITLYNN LEYLA BINTI AHMAD FUAD HILMI", "KAVEESHA A/P ROBINSON SIVAN", "MAI AZZALEYA HUSNA BINTI MEOR SYAHRIN EDZUAN", "NETRASRI A/P SRI BALA SUBRAMANIAM", "NOORUL AZRAH BINTI THAMIMUL ANSARI", "NUR AAFIA AZWA SAFRINA BINTI MOHD AZLAN", "NUR AIN QALISHA BINTI MOHD NAZMUDDIN", "NUR IZZATI BINTI MAT ZAHID", "NUR KHAIRINA ARISSA BINTI MOHD KHALEL", "NUR QIESHA IRDINA BINTI MOHD AIZUDDIN", "NUR YASMIN MARISSA BINTI MOHAMMAD FAFIZ", "NUR ZARRA DARWISYA BINTI MOHD SAIDY", "NURDINA INSYIRAH BINTI MOHAMAD HAFIZI", "NURIN ARIANA BINTI MOHD HAFIDY", "NURLAYLA RAISHA BINTI MOHAMAD RADZI", "NURLISA IMANINA BINTI MOHAMAD ZAINI", "PUTERI NATASYA BINTI HIDZUAN", "PUTERI SYAHRIFA SYAHWANA BINTI HASBOLLAH", "QASEH UMAYRA BINTI ZULFARKA", "RATHAA A/P SATHIAMURTHI", "SAADHANA SHREE A/P RAJASEGARAN", "SITI FARAHUSNA BINTI HARD", "TANISKA A/P SARAVANAN", "THARSHAINEY A/P SIVAM", "UMMUL SUBUHATH SHAMIHA BINTI ZULQARNAIN", "WAN NURAINA HANNANI BINTI WAN MUHAMMAD RAHIMI"],
+        "6 Daffodils": ["AISHA FATIMA BINTI MOHD FAIZAL", "ALIYA ADRIANA BINTI MOHD ARIF", "ALYA NADHIRAH BINTI ABDUL RAZAK", "AYRA SAFIYYAH BINTI MOHD BAKHTIAR", "HAFIZAH BINTI AZMI", "HAIFAA FAIQAH BINTI MUHAMMAD HASHIM", "HANNAH SAFIYYAH BINTI RAZMAN FAIZ", "HASYA MAISARAH BINTI MOHD NAJIB", "HAYAA YUMNA BINTI MUHAMAD HAMDI", "KAITLYNN LEYLA BINTI AHMAD FUAD HILMI", "KAVEESHA A/P ROBINSON SIVAN", "MAI AZZALEYA HUSNA BINTI MEOR SYAHRIN EDZUAN", "NETRASRI A/P SRI BALA SUBRAMANIAM", "NOORUL AZRAH BINTI THAMIMUL ANSARI", "NUR AAFIA AZWA SAFRINA BINTI MOHD AZLAN", "NUR AIN QALISHA BINTI HARD", "NUR IZZATI BINTI MAT ZAHID", "NUR KHAIRINA ARISSA BINTI MOHD KHALEL", "NUR QIESHA IRDINA BINTI MOHD AIZUDDIN", "NUR YASMIN MARISSA BINTI MOHAMMAD FAFIZ", "NUR ZARRA DARWISYA BINTI MOHD SAIDY", "NURDINA INSYIRAH BINTI MOHAMAD HAFIZI", "NURIN ARIANA BINTI MOHD HAFIDY", "NURLAYLA RAISHA BINTI MOHAMAD RADZI", "NURLISA IMANINA BINTI MOHAMAD ZAINI", "PUTERI NATASYA BINTI HIDZUAN", "PUTERI SYAHRIFA SYAHWANA BINTI HASBOLLAH", "QASEH UMAYRA BINTI ZULFARKA", "RATHAA A/P SATHIAMURTHI", "SAADHANA SHREE A/P RAJASEGARAN", "SITI FARAHUSNA BINTI HARD", "TANISKA A/P SARAVANAN", "THARSHAINEY A/P SIVAM", "UMMUL SUBUHATH SHAMIHA BINTI ZULQARNAIN", "WAN NURAINA HANNANI BINTI WAN MUHAMMAD RAHIMI"],
         "6 Camellia": ["ANUSREE A/P NAVANITHAN", "DAKSHAYANI A/P KANAPATHY", "DAMIA QADYRA BINTI ROZLAN", "DESNA A/P DASS", "EAVANAYSA A/P V.DEVANTHIRAN", "GAYATHRI DORAISINGAM", "INARAH QASRINA BINTI MOHD ANDRIAN", "MASROTUL SUFEYA BT MOHD RIDUAN", "NOR ADELIA MARDHIYAH BINTI MOHD AZAHAR", "NOR RAFIDAH BINTI ABD.RAHIM", "NUR ADRIANA SAFFIYA BINTI NUR HAEYRY", "NUR AAIN MIM BINTI SHAMIM HOSSSAIN MUKLES", "NUR AISY ARISSA BINTI KUZAIRI HEZRI", "NUR ALEESYA SOFEA BINTI NOORADZLAN", "NUR ALISYA AMANDA BT MOHD HARMIZY", "NUR AUNI MAISARAH BINTI NORMAN", "NUR DAMIA QATRUNNADA BINTI AHMAD SUYUTI", "NUR EISHAL HUMAIRA BINTI MOHD FAISAL", "NUR JANNAH HUMAIRA BINTI MOHD IZUAN", "NUR SYAFIRA BINTI UJANG", "NUR SYAKIRA ZULAIQHA BINTI BADRUL HISAM", "NURNAILAHNAJWA BINTI NAZRI", "NURUL DAMIA BT ZULKARNAIN", "OVIYA A/P SELVARAJOO", "PUTRI QISTINA BATRISYA BINTI ASWADI", "PUTRI YASMEEN MAISARA BINTI HIDHIR SUFFI", "QALISYA NUR' JANNAH BINTI RAMIZAL", "QASEH RANIA BINTI ZAFRULNIZAM", "RAYHANNA DAYANA BINTI MD RAZALI", "SITI NUR SAFINA BINTI SEIKH OMAR", "SUJEETHAJI A/P JIVA NANTHAN", "VENOLINA JASON RAJ", "YOGALAXSHME A/P DASS"]
     };
 
@@ -162,27 +167,26 @@
     const myChart = new Chart(ctx, {
         type: 'doughnut',
         data: { labels: ['Selesai', 'Belum'], datasets: [{ data: [0, 406], backgroundColor: ['#2ecc71', '#e74c3c'], borderWidth: 0 }] },
-        options: { plugins: { legend: { display: false } }, cutout: '70%' }
+        options: { plugins: { legend: { display: false } }, cutout: '75%' }
     });
 
     const selKelas = document.getElementById('selKelas');
     const selNama = document.getElementById('selNama');
-    selKelas.innerHTML = '<option value="">-- PILIH KELAS --</option>';
+    selKelas.innerHTML = '<option value="">-- KELAS --</option>';
     Object.keys(rawData).forEach(k => selKelas.innerHTML += `<option value="${k}">${k}</option>`);
 
     selKelas.onchange = function() {
-        selNama.innerHTML = '<option value="">-- PILIH NAMA --</option>';
+        selNama.innerHTML = '<option value="">-- NAMA --</option>';
         if(rawData[this.value]) {
             rawData[this.value].forEach(n => selNama.innerHTML += `<option value="${n}">${n}</option>`);
         }
     };
 
-    // --- LOGIK ADMIN PASSWORD ---
     let isAdmin = false;
     document.getElementById('btnAdminAccess').onclick = function() {
         if(!isAdmin) {
-            const pw = prompt("Sila masukkan Kata Laluan Admin untuk aktifkan Padam:");
-            if(pw === "admin789") { // <--- TUKAR PASSWORD DI SINI
+            const pw = prompt("Password Admin:");
+            if(pw === "admin789") {
                 isAdmin = true;
                 document.body.classList.add('admin-mode');
                 document.getElementById('cardSudah').classList.add('admin-active-bg');
@@ -199,9 +203,7 @@
     };
 
     window.padamRekod = function(key) {
-        if(confirm("Padam rekod murid ini?")) {
-            remove(ref(db, `yuran_2026/${key}`));
-        }
+        if(confirm("Padam rekod ini?")) remove(ref(db, `yuran_2026/${key}`));
     };
 
     document.getElementById('btnSimpan').onclick = function() {
@@ -225,7 +227,7 @@
         }).join('');
 
         let belumCount = 0, belumHTML = "";
-        Object.keys(rawData).sort().forEach(kls => {
+        Object.keys(rawData).forEach(kls => {
             rawData[kls].forEach(nama => {
                 if(!sudahNama.has(nama)) {
                     belumCount++;
@@ -239,7 +241,7 @@
         document.getElementById('totalSemasa').innerText = "RM " + total;
         document.getElementById('totalPIBG').innerText = "RM " + pibg;
         document.getElementById('totalExtra').innerText = "RM " + extra;
-        document.getElementById('bilBayarTotal').innerText = sudahNama.size;
+        document.getElementById('bilBayarTotal').innerText = sudahNama.size + "/406";
         document.getElementById('countBelum').innerText = belumCount;
         myChart.data.datasets[0].data = [sudahNama.size, belumCount];
         myChart.update();
